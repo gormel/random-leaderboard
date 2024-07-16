@@ -1,7 +1,7 @@
-from http.server import BaseHTTPRequestHandler
+from http.server import SimpleHTTPRequestHandler
 from http.server import HTTPServer
 
-class HttpGetHandler(BaseHTTPRequestHandler):
+class HttpGetHandler(SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory="./htdocs", **kwargs)
 
