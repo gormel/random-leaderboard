@@ -4,24 +4,20 @@ from http.server import HTTPServer
 import os
 from io import open
 
+extra = ""
+
+try:
+    with open("./htdocs/index.html", "r") as f:
+        extra = f.read()
+except Exception as e:
+    extra = str(e)
+
 class HttpGetHandler(SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory="./htdocs/", **kwargs)
         
 class HttpGetHandler1(BaseHTTPRequestHandler):
-    """Обработчик с реализованным методом do_GET."""
-
     def do_GET(self):
-        extra = ""
-
-        try:
-            with open("./htdocs/index.html", "r") as f:
-                extra = f.read()
-                pass
-        except Exception as e:
-            extra = str(e)
-            pass
-
         self.send_response(200)
         self.send_header("Content-type", "text/html")
         self.end_headers()
