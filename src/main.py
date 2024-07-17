@@ -10,13 +10,13 @@ class HttpGetHandler(SimpleHTTPRequestHandler):
         
 class HttpGetHandler1(BaseHTTPRequestHandler):
     def do_GET(self):
-        if self.path == '/':
+        if self.path == '/':                
             self.send_response(200)
             self.send_header("Content-type", "text/html")
             self.end_headers()
-            self.wfile.write('<html><head><meta charset="utf-8">'.encode())
-            self.wfile.write('<title>Простой HTTP-сервер.</title></head>'.encode())
-            self.wfile.write('<body><a href="read_file">go</a></body></html>'.encode())
+            with open("./htdocs/index.html", "r") as f:
+                extra = f.read()
+                self.wfile.write(f.read().encode())
         elif self.path == '/read_file':
             extra = ""
 
