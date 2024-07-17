@@ -2,10 +2,7 @@ from http.server import BaseHTTPRequestHandler
 from http.server import SimpleHTTPRequestHandler
 from http.server import HTTPServer
 import os
-"""from io import open"""
-
-def open(f, m):
-    return {}
+from io import open
 
 class HttpGetHandler(SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
@@ -19,7 +16,7 @@ class HttpGetHandler1(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write('<html><head><meta charset="utf-8">'.encode())
             self.wfile.write('<title>Простой HTTP-сервер.</title></head>'.encode())
-            self.wfile.write('<body><link href="read_file">go</link></body></html>'.encode())
+            self.wfile.write('<body><a href="read_file">go</a></body></html>'.encode())
         elif self.path == '/read_file':
             extra = ""
 
@@ -43,7 +40,7 @@ class HttpGetHandler1(BaseHTTPRequestHandler):
 
 
 
-def run(server_class=HTTPServer, handler_class=HttpGetHandler):
+def run(server_class=HTTPServer, handler_class=HttpGetHandler1):
   server_address = ('', 8081)
   httpd = server_class(server_address, handler_class)
   try:
