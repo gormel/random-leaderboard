@@ -14,7 +14,7 @@ class HttpGetHandler1(BaseHTTPRequestHandler):
         extra = ""
 
         try:
-            with open("./htdocs/index.html") as f:
+            with open("./htdocs/index.html", "r") as f:
                 extra = f.read()
                 pass
         except any as e:
