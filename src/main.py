@@ -2,6 +2,7 @@ from http.server import BaseHTTPRequestHandler
 from http.server import SimpleHTTPRequestHandler
 from http.server import HTTPServer
 import os
+from io import open
 
 class HttpGetHandler(SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
